@@ -1,0 +1,122 @@
+/* Стилі для форми пошуку */
+.form-control {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+.search_button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.col-xl-4,
+.col-lg-4,
+.col-md-4,
+.col-sm-6,
+.col-12 {
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+/* Стилі для результатів пошуку */
+.search-results {
+    margin-top: 20px;
+}
+
+.tour {
+    display: flex;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.tour-content {
+    flex: 1;
+    display: flex;
+}
+
+.tour-image {
+    width: 180px;
+    flex-shrink: 0;
+    margin-right: 10px;
+}
+
+.tour-image img {
+    width: 100%;
+    height: auto;
+}
+
+.tour-info {
+    flex: 1;
+}
+
+.tour-title {
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.tour-location {
+    margin-bottom: 5px;
+}
+
+.tour-dates {
+    margin-bottom: 10px;
+}
+
+.tour-action {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.tour-price {
+    margin-bottom: 10px;
+}
+
+.details-link,
+.order-link {
+    display: inline-block;
+    padding: 8px 15px;
+    margin-top: 5px;
+    text-decoration: none;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.details-link:hover,
+.order-link:hover {
+    background-color: #0056b3;
+}
+
+.no-results {
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
+    color: #777;
+}
+

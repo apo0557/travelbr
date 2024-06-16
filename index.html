@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Знайдіть свій тур</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h3>Знайдіть свій тур</h3>
+    <form id="searchForm">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 form-group">
+                        <label for="keywords">Ключові слова</label>
+                        <input class="form-control" placeholder="Введіть ключові слова" type="text" id="keywords" name="keywords">
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 form-group">
+                        <label for="category">Категорія</label>
+                        <select class="form-control" id="category" name="category">
+                            <option value="">Будь-яка</option>
+                            <option value="Тури по Україні">Тури по Україні</option>
+                            <option value="Тури в гори">Тури в гори</option>
+                            <option value="Автобусні тури">Автобусні тури</option>
+                            <option value="Літні тури">Літні тури</option>
+                        </select>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 form-group">
+                        <label for="min_price">Мінімальна ціна</label>
+                        <input class="form-control" placeholder="00.0" type="text" id="min_price" name="min_price">
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 form-group">
+                        <label for="max_price">Максимальна ціна</label>
+                        <input class="form-control" placeholder="00.0" type="text" id="max_price" name="max_price">
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 form-group">
+                        <label for="date">Дата</label>
+                        <input class="form-control" type="date" id="date" name="date">
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 form-group">
+                <button type="submit" class="search_button">Пошук</button>
+            </div>
+        </div>
+    </form>
+
+    <div id="searchResults" class="search-results">
+        <!-- Результати пошуку турів будуть тут -->
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оплатити тур</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Подключаем Stripe.js -->
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <h1>Оплатити тур</h1>
+    <div id="orderDetails">
+        <!-- Здесь можно отобразить информацию о заказе, если необходимо -->
+    </div>
+    <form id="paymentForm">
+        <div class="form-group">
+            <label for="card-element">
+                Кредитна або дебетова карта
+            </label>
+            <div id="card-element">
+                <!-- Вставка элемента Stripe для ввода карты -->
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Оплатити</button>
+        <!-- Сообщение об ошибке -->
+        <div id="card-errors" role="alert"></div>
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Инициализируем Stripe с вашим Public key
+            var stripe = Stripe('YOUR_PUBLIC_KEY');
+            var elements = stripe.elements();
+
+            // Создаём элементы для ввода карты
+            var cardElement = elements.create('card');
+            cardElement.mount('#card-element');
+
+            // Обрабатываем событие отправки формы
+            var form = document.getElementById('paymentForm');
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+                // Отключаем кнопку оплаты, чтобы избежать повторных нажатий
+                document.querySelector('button').disabled = true;
+
+                // Создаём платёжный токен
+                stripe.createToken(cardElement).then(function (result) {
+                    if (result.error) {
+                        // Показываем ошибку пользователю
+                        var errorElement = document.getElementById('card-errors');
+                        errorElement.textContent = result.error.message;
+                        // Включаем кнопку оплаты
+                        document.querySelector('button').disabled = false;
+                    } else {
+                        // Отправляем токен на ваш сервер для выполнения платежа
+                        stripeTokenHandler(result.token);
+                    }
+                });
+            });
+
+            // Функция для отправки токена на ваш сервер
+            function stripeTokenHandler(token) {
+                // Отправляем токен на сервер для выполнения платежа
+                fetch('process_payment.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        token: token.id
+                    }),
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    alert('Платіж успішно здійснено!');
+                    // Можно перенаправить пользователя на страницу подтверждения или другую страницу
+                    window.location.href = 'confirmation.html'; // Замените на свою страницу подтверждения
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Під час обробки платежу сталася помилка. Будь ласка, спробуйте знову.');
+                    // Включаем кнопку оплаты
+                    document.querySelector('button').disabled = false;
+                });
+            }
+        });
+    </script>
+</body>
+</html>
